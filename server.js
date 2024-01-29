@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
 
 async function main() {
     if(process.env.NODE_ENV === 'development') app.use(morgan('dev'))
-    app.use(cors({ origin: ['http://amzngoods.com', 'http://localhost:3000'], methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    app.use(cors({ origin: ['https://glittering-parfait-b92426.netlify.app', 'http://localhost:3000'], methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, }));
     app.use(express.json())
 
