@@ -42,6 +42,7 @@ async function main() {
       res.json({filename: req.file.filename})
     })
     app.use('/api/products', productRoutes)
+    app.use(express.static('public'));
 
     app.listen(
         PORT, 
