@@ -23,8 +23,15 @@ const storage = multer.diskStorage({
 
 async function main() {
     if(process.env.NODE_ENV === 'development') app.use(morgan('dev'))
-    app.use(cors({ origin: ['http://www.amzngoods.com', 'http://localhost:3000'], methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, }));
+    // app.use(cors({ origin: ['http://www.amzngoods.com', 'http://localhost:3000'], methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    // credentials: true, }));
+    app.use((req, res, next) => {
+      res.setHeader('Access-Control-Allow-Origin', 'https://amzngoods.com');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+      res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+      res.setHeader('Access-Control-Allow-Credentials', true);
+      next();
+    });
     app.use(express.json())
 
     const __dirname = path.resolve()
