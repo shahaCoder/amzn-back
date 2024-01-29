@@ -26,7 +26,7 @@ async function main() {
     // app.use(cors({ origin: ['http://www.amzngoods.com', 'http://localhost:3000'], methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     // credentials: true, }));
     app.use((req, res, next) => {
-      res.setHeader('Access-Control-Allow-Origin', 'https://amzngoods.com');
+      res.setHeader('Access-Control-Allow-Origin', 'https://amzngoods.com, https://localhost:3000');
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
       res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
       res.setHeader('Access-Control-Allow-Credentials', true);
@@ -42,7 +42,6 @@ async function main() {
       res.json({filename: req.file.filename})
     })
     app.use('/api/products', productRoutes)
-    app.use(express.static('public'));
 
     app.listen(
         PORT, 
