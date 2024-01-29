@@ -23,7 +23,7 @@ export const createProduct = asyncHandler(async (req, res) => {
 })
 
 export const getProducts = asyncHandler(async (req, res) => {
-    const products = await prisma.product.findMany({
+    const products = await prisma.product?.findMany({
         orderBy: {
             createdAt: 'desc'
         }
@@ -35,7 +35,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
     const {title, img, price, link, lastPrice, uniCode} = req.body
     const decodedUniCode = decodeURIComponent(uniCode);
     try {
-        const product = await prisma.product.update({
+        const product = await prisma.product?.update({
             where: {
                 id: +req.params.id,
             },
@@ -56,7 +56,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
 
 export const deleteProduct = asyncHandler(async(req, res) => {
         try {
-            const product = await prisma.product.delete({
+            const product = await prisma.product?.delete({
                 where: {
                     id: +req.params.id,
                 },
@@ -73,7 +73,7 @@ export const deleteProduct = asyncHandler(async(req, res) => {
             return res.status(400).json({ error: 'Parameter :title is required' });
         }
         try {
-            const products = await prisma.product.findMany({
+            const products = await prisma.product?.findMany({
                 where: {
                     OR: [
                         {
